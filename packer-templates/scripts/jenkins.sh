@@ -7,7 +7,7 @@ wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key 
 echo "deb https://pkg.jenkins.io/debian-stable binary/" >  /etc/apt/sources.list.d/jenkins.list
 
 apt-get update
-apt-get install -y jenkins --force=yes
+apt-get install -y jenkins
 apt-get upgrade
 
 # copy premade configuration files
