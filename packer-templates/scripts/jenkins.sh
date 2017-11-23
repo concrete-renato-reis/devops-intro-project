@@ -1,14 +1,18 @@
 #!/bin/bash -eux
 
 # JDK and JRE are required for Jenkins
-apt-get install -y openjdk-7-jre openjdk-7-jdk unzip dos2unix
+#apt-get install -y openjdk-7-jre openjdk-7-jdk unzip dos2unix
 
-wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-echo "deb https://pkg.jenkins.io/debian-stable binary/" >  /etc/apt/sources.list.d/jenkins.list
+#wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+#echo "deb https://pkg.jenkins.io/debian-stable binary/" >  /etc/apt/sources.list.d/jenkins.list
 
 apt-get update
-apt-get install -y jenkins
-apt-get upgrade
+apt-get install -y openjdk-7-jre-headless wget 
+wget https://pkg.jenkins.io/debian-stable/binary/jenkins_2.19.1_all.deb && dpkg -i jenkins_2.19.1_all.deb 
+apt -f install -y 
+
+#apt-get install -y jenkins
+#apt-get upgrade
 
 # copy premade configuration files
 # jenkins default config, to set --prefix=jenkins
@@ -31,4 +35,4 @@ tar zxvf /tmp/jenkins-config/example-job.tar.gz
 chown -R jenkins:jenkins /var/lib/jenkins
 
 # restart for jenkins to pick up the new configs
-service jenkins restart
+#service jenkins restart
